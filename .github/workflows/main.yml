@@ -28,7 +28,7 @@ jobs:
     - name: Build, tag, and push image to Amazon ECR
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: 974283766863.dkr.ecr.us-east-1.amazonaws.com/eks-lab-app
+        ECR_REPOSITORY: eks-lab-app
         IMAGE_TAG: latest 
         # En producción real usaríamos el SHA del commit, pero usamos 'latest' para simplificar el lab
       run: |
