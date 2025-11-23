@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mi-app-web
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mi-app-web
+  template:
+    metadata:
+      labels:
+        app: mi-app-web
+    spec:
+      containers:
+      - name: web
+        image: 974283766863.dkr.ecr.us-east-1.amazonaws.com/eks-lab-app:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mi-app-web-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: mi-app-web
+  ports:
+  - port: 80
+    targetPort: 80
